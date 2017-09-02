@@ -8,7 +8,7 @@ from django.core.exceptions import ImproperlyConfigured
 # ------------------------------------------------------------------
 
 FIFTY_MEGABYTES = 50 * 1024 * 1024
-VALID_CONTENT_TYPES = 'image/jpeg', 'image/png', 'image/svg+xml'
+VALID_CONTENT_TYPES = 'image/jpeg', 'image/png', 'image/svg+xml', 'image/gif'
 NINETY_DPI = 90
 IM_WIDTH = 500
 IM_HEIGHT = 500
