@@ -259,6 +259,10 @@ var keyboardEvents = {
     hub: function (event) {
         switch (event.key) {
             case this.keys.TAB:
+                if (event.ctrlKey) {
+                    // Skip if ctrl was down
+                    return false;
+                }
                 // Shift pressed: un-indent, otherwise indent.
                 return event.shiftKey ? this.handlers.removeTab : this.handlers.applyTab;
             case this.keys.DUPLICATE:
@@ -564,7 +568,12 @@ exports.MarkdownX = MarkdownX;
 })("docReady", window);
 docReady(function () {
     var ELEMENTS = document.getElementsByClassName('markdownx');
-    return Object.keys(ELEMENTS).map(function (key) { return new MarkdownX(ELEMENTS[key], ELEMENTS[key].querySelector('.markdownx-editor'), ELEMENTS[key].querySelector('.markdownx-preview')); });
+    return Object.keys(ELEMENTS).map(function (key) {
+        var element = ELEMENTS[key], editor = element.querySelector('.markdownx-editor'), preview = element.querySelector('.markdownx-preview');
+        // Only add the new MarkdownX instance to fields that have no MarkdownX instance yet.
+        if (!editor.hasAttribute('data-markdownx-init'))
+            return new MarkdownX(element, editor, preview);
+    });
 });
 
 },{"./utils":2}],2:[function(require,module,exports){
