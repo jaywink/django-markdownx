@@ -74,7 +74,6 @@ MARKDOWNX_SVG_JAVASCRIPT_PROTECTION = True
 # Editor
 # --------------------
 MARKDOWNX_EDITOR_RESIZABLE = _mdx('EDITOR_RESIZABLE', True)
-MARKDOWNX_DISABLE_KEYS = _mdx('DISABLE_KEYS', False)
 
 
 # ------------------------------------------------

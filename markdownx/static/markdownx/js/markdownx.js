@@ -21,7 +21,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var utils_1 = require("./utils");
+<<<<<<< HEAD
 var UPLOAD_URL_ATTRIBUTE = "data-markdownx-upload-urls-path", PROCESSING_URL_ATTRIBUTE = "data-markdownx-urls-path", RESIZABILITY_ATTRIBUTE = "data-markdownx-editor-resizable", LATENCY_ATTRIBUTE = "data-markdownx-latency", DISABLE_KEYS_ATTRIBUTE = "data-markdownx-disable-keys", LATENCY_MINIMUM = 500, // microseconds.
+=======
+var UPLOAD_URL_ATTRIBUTE = "data-markdownx-upload-urls-path", PROCESSING_URL_ATTRIBUTE = "data-markdownx-urls-path", RESIZABILITY_ATTRIBUTE = "data-markdownx-editor-resizable", LATENCY_ATTRIBUTE = "data-markdownx-latency", LATENCY_MINIMUM = 500, // microseconds.
+>>>>>>> parent of 8b84886... Allow disabling editor hotkeys
 XHR_RESPONSE_ERROR = "Invalid response", UPLOAD_START_OPACITY = "0.3", NORMAL_OPACITY = "1";
 // ---------------------------------------------------------------------------------------------------------------------
 /**
@@ -259,10 +263,13 @@ var keyboardEvents = {
     hub: function (event) {
         switch (event.key) {
             case this.keys.TAB:
+<<<<<<< HEAD
                 if (event.ctrlKey) {
                     // Skip if ctrl was down
                     return false;
                 }
+=======
+>>>>>>> parent of 8b84886... Allow disabling editor hotkeys
                 // Shift pressed: un-indent, otherwise indent.
                 return event.shiftKey ? this.handlers.removeTab : this.handlers.applyTab;
             case this.keys.DUPLICATE:
@@ -331,8 +338,12 @@ var MarkdownX = function (parent, editor, preview) {
         preview: preview,
         parent: parent,
         _latency: null,
+<<<<<<< HEAD
         _editorIsResizable: null,
         _disableKeys: null
+=======
+        _editorIsResizable: null
+>>>>>>> parent of 8b84886... Allow disabling editor hotkeys
     };
     /**
      * Initialisation settings (mounting events, retrieval of initial data,
@@ -379,7 +390,10 @@ var MarkdownX = function (parent, editor, preview) {
         properties._editorIsResizable = ((properties.editor.getAttribute(RESIZABILITY_ATTRIBUTE).match(/true/i) || []).length > 0 &&
             properties.editor.offsetHeight > 0 &&
             properties.editor.offsetWidth > 0);
+<<<<<<< HEAD
         properties._disableKeys = (properties.editor.getAttribute(DISABLE_KEYS_ATTRIBUTE).match(/true/i) || []).length > 0;
+=======
+>>>>>>> parent of 8b84886... Allow disabling editor hotkeys
         getMarkdown();
         utils_1.triggerCustomEvent("markdownx.init");
     };
@@ -420,7 +434,11 @@ var MarkdownX = function (parent, editor, preview) {
      */
     var onKeyDown = function (event) {
         var handlerFunc = keyboardEvents.hub(event);
+<<<<<<< HEAD
         if (typeof handlerFunc != 'function' || properties._disableKeys)
+=======
+        if (typeof handlerFunc != 'function')
+>>>>>>> parent of 8b84886... Allow disabling editor hotkeys
             return false;
         EventHandlers.inhibitDefault(event);
         // Holding the start location before anything changes.
@@ -572,10 +590,17 @@ exports.MarkdownX = MarkdownX;
 docReady(function () {
     var ELEMENTS = document.getElementsByClassName('markdownx');
     return Object.keys(ELEMENTS).map(function (key) {
+<<<<<<< HEAD
         var element = ELEMENTS[key], editor = element.querySelector('.markdownx-editor'), preview = element.querySelector('.markdownx-preview');
         // Only add the new MarkdownX instance to fields that have no MarkdownX instance yet.
         if (!editor.hasAttribute('data-markdownx-init'))
             return new MarkdownX(element, editor, preview);
+=======
+        // Only add the new MarkdownX instance to fields that have no MarkdownX instance yet
+        if (!ELEMENTS[key].querySelector('.markdownx-editor').hasAttribute('data-markdownx-init')) {
+            return new MarkdownX(ELEMENTS[key], ELEMENTS[key].querySelector('.markdownx-editor'), ELEMENTS[key].querySelector('.markdownx-preview'));
+        }
+>>>>>>> parent of 8b84886... Allow disabling editor hotkeys
     });
 });
 

@@ -9,8 +9,8 @@ from .settings import (
     MARKDOWNX_EDITOR_RESIZABLE,
     MARKDOWNX_URLS_PATH,
     MARKDOWNX_UPLOAD_URLS_PATH,
-    MARKDOWNX_SERVER_CALL_LATENCY,
-    MARKDOWNX_DISABLE_KEYS)
+    MARKDOWNX_SERVER_CALL_LATENCY
+)
 
 
 try:
@@ -89,8 +89,7 @@ class MarkdownxWidget(forms.Textarea):
             'data-markdownx-editor-resizable': MARKDOWNX_EDITOR_RESIZABLE,
             'data-markdownx-urls-path': MARKDOWNX_URLS_PATH,
             'data-markdownx-upload-urls-path': MARKDOWNX_UPLOAD_URLS_PATH,
-            'data-markdownx-latency': MARKDOWNX_SERVER_CALL_LATENCY,
-            'data-markdownx-disable-keys': MARKDOWNX_DISABLE_KEYS
+            'data-markdownx-latency': MARKDOWNX_SERVER_CALL_LATENCY
         })
 
         return attrs

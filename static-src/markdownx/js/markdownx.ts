@@ -65,8 +65,7 @@ interface MarkdownxProperties {
     editor:             HTMLTextAreaElement,
     preview:            HTMLElement,
     _latency:           number | null,
-    _editorIsResizable: Boolean | null,
-    _disableKeys:       Boolean | null
+    _editorIsResizable: Boolean | null
 }
 
 import {
@@ -81,7 +80,6 @@ const UPLOAD_URL_ATTRIBUTE:     string = "data-markdownx-upload-urls-path",
       PROCESSING_URL_ATTRIBUTE: string = "data-markdownx-urls-path",
       RESIZABILITY_ATTRIBUTE:   string = "data-markdownx-editor-resizable",
       LATENCY_ATTRIBUTE:        string = "data-markdownx-latency",
-      DISABLE_KEYS_ATTRIBUTE:   string = "data-markdownx-disable-keys",
       LATENCY_MINIMUM:          number = 500,  // microseconds.
       XHR_RESPONSE_ERROR:       string = "Invalid response",
       UPLOAD_START_OPACITY:     string = "0.3",
@@ -497,8 +495,7 @@ const MarkdownX = function (parent: HTMLElement, editor: HTMLTextAreaElement, pr
         preview:            preview,
         parent:             parent,
         _latency:           null,
-        _editorIsResizable: null,
-        _disableKeys:       null
+        _editorIsResizable: null
 
     };
 
@@ -559,10 +556,6 @@ const MarkdownX = function (parent: HTMLElement, editor: HTMLTextAreaElement, pr
               properties.editor.offsetWidth > 0
         );
 
-        properties._disableKeys = (
-            properties.editor.getAttribute(DISABLE_KEYS_ATTRIBUTE).match(/true/i) || []
-        ).length > 0;
-
         getMarkdown();
 
         triggerCustomEvent("markdownx.init");
@@ -621,7 +614,7 @@ const MarkdownX = function (parent: HTMLElement, editor: HTMLTextAreaElement, pr
 
         const handlerFunc: Function | Boolean = keyboardEvents.hub(event);
 
-        if (typeof handlerFunc != 'function' || properties._disableKeys) return false;
+        if (typeof handlerFunc != 'function') return false;
 
         EventHandlers.inhibitDefault(event);
 
